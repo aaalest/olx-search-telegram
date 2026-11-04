@@ -2,12 +2,9 @@ from aiogram import Router, F
 from aiogram.types import CallbackQuery, Message
 from aiogram.fsm.context import FSMContext
 
-from olx_search_telegram.keyboards import (
-    MenuNavCallback,
-    get_back_keyboard,
-    get_language_keyboard,
-    get_main_menu_keyboard,
-)
+from olx_search_telegram.callbacks import MenuNavCallback
+from olx_search_telegram.keyboards.common import get_back_keyboard
+from olx_search_telegram.keyboards.menus import get_language_keyboard, get_main_menu_keyboard
 
 
 router = Router()
