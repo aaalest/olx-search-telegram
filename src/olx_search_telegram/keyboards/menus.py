@@ -2,14 +2,14 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from olx_search_telegram.callbacks import MenuNavCallback
 
 
-def get_main_menu_keyboard():
+def main_menu_keyboard():
     builder = InlineKeyboardBuilder()
     builder.button(text="🔍 Search", callback_data=MenuNavCallback(action="search"))
     builder.button(text="🌐 Language", callback_data=MenuNavCallback(action="lang"))
     builder.adjust(2)
     return builder.as_markup()
 
-def get_language_keyboard():
+def language_keyboard():
     builder = InlineKeyboardBuilder()
     builder.button(text="🇬🇧 English", callback_data=MenuNavCallback(action="lang", param="en"))
     builder.button(text="🇵🇱 Polski", callback_data=MenuNavCallback(action="lang", param="pl"))

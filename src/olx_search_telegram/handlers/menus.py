@@ -3,8 +3,8 @@ from aiogram.types import CallbackQuery, Message
 from aiogram.fsm.context import FSMContext
 
 from olx_search_telegram.callbacks import MenuNavCallback
-from olx_search_telegram.keyboards.common import get_back_keyboard
-from olx_search_telegram.keyboards.menus import get_language_keyboard, get_main_menu_keyboard
+from olx_search_telegram.keyboards.common import back_keyboard
+from olx_search_telegram.keyboards.menus import main_menu_keyboard, language_keyboard
 
 
 router = Router()
@@ -15,7 +15,7 @@ async def cmd_start(message: Message, state: FSMContext):
     await state.clear()
     await message.answer(
         "<b>OLX Search Bot</b>\nSelect an option below:",
-        reply_markup=get_main_menu_keyboard(),
+        reply_markup=main_menu_keyboard(),
         parse_mode="HTML"
     )
 
@@ -26,17 +26,17 @@ async def handle_navigation(callback: CallbackQuery, callback_data: MenuNavCallb
 
     if callback_data.action == "main":
         text = "<b>OLX Search Bot</b>\nSelect an option below:"
-        markup = get_main_menu_keyboard()
+        markup = main_menu_keyboard()
     elif callback_data.action == "search":
         text = "<b>Search Configuration</b>\nEnter search query or target URL:"
-        markup = get_back_keyboard()
+        markup = back_keyboard()
     elif callback_data.action == "lang":
         if callback_data.param:
             # TODO: Persist language selection to PostgreSQL here
             text = f"Language updated to: <b>{callback_data.param.upper()}</b>"
         else:
             text = "<b>Select Language:</b>"
-        markup = get_language_keyboard()
+        markup = language_keyboard()
     else:
         return
 
